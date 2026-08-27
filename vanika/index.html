@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rakshabandhan Surprise 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fredoka:wght@500;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="audio-control" id="musicToggle">🎵 Play Song</div>
+  <audio id="bgMusic" loop src="assets/song.mp3"></audio>
+
+  <div class="device-frame">
+    <div class="gingham-border">
+      <div class="screen-canvas" id="canvas">
+        
+        <canvas id="particleCanvas"></canvas>
+
+        <!-- Slide 1: Intro -->
+        <section class="slide active" id="slide-intro">
+          <div class="curved-banner">I have made something for you</div>
+          <div class="shinchan-hero">
+            <img src="assets/intro.gif" alt="Shinchan" class="shinchan-img animate-float" />
+          </div>
+          <h2 class="subtext">Do you wanna see it?</h2>
+          <div class="btn-group">
+            <button class="btn btn-red" onclick="goToSlide('slide-excited')">YES</button>
+            <button class="btn btn-red" onclick="goToSlide('slide-dare')">NO</button>
+          </div>
+        </section>
+
+        <!-- Slide 2: Angry Shinchan -->
+        <section class="slide" id="slide-dare">
+          <h1 class="angry-title">HOW DARE YOU!?</h1>
+          <div class="shinchan-hero">
+            <img src="assets/angry.gif" alt="Angry Shinchan" class="shinchan-img" />
+          </div>
+          <button class="btn btn-try-again" onclick="goToSlide('slide-intro')">TRY AGAIN</button>
+        </section>
+
+        <!-- Slide 3: Are you excited? -->
+        <section class="slide" id="slide-excited">
+          <div class="curved-banner animate-bounce">Are you really excited?</div>
+          <div class="shinchan-hero">
+            <img src="assets/excited.gif" alt="Excited Shinchan" class="shinchan-img animate-float" />
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-red" onclick="goToSlide('slide-gifts')">YES</button>
+            <button class="btn btn-red" onclick="goToSlide('slide-gifts')">YES 🥰</button>
+          </div>
+        </section>
+
+        <!-- Slide 4: Gift Hub -->
+        <section class="slide" id="slide-gifts">
+          <div class="curved-banner">Each gift has something for you..</div>
+          <div class="gifts-container">
+            <div class="gift-box g1" onclick="goToSlide('slide-gift-1')">
+              <span class="gift-icon">🎁</span>
+              <p>Gift 1</p>
+            </div>
+            <div class="gift-box g2" onclick="goToSlide('slide-gift-2')">
+              <span class="gift-icon">🎁</span>
+              <p>Gift 2</p>
+            </div>
+            <div class="gift-box g3" onclick="goToSlide('slide-gift-3')">
+              <span class="gift-icon">🎁</span>
+              <p>Gift 3</p>
+            </div>
+          </div>
+          <p class="click-hint pulse-text">CLICK ON THE GIFTS</p>
+        </section>
+
+        <!-- Gift 1A: Rakhi Card -->
+        <section class="slide" id="slide-gift-1">
+          <button class="back-home-btn" onclick="goToSlide('slide-gifts')">◀ Back</button>
+          <div class="rakhi-layout">
+            <div class="rakhi-graphic">
+              <div class="rakhi-circle animate-spin-slow">💮</div>
+              <h2>Happy<br><span class="highlight-text">Rakshabandhan</span></h2>
+              <p class="message-snip">Here's to the prettiest school diva, my accidental bestie since 9th grade, and the ultimate partner-in-crime!</p>
+              <div class="badge-tag">Didi 💖</div>
+            </div>
+            <div class="photo-card-polaroid draggable">
+              <!-- UPDATED: RKB.jpg -->
+              <img src="assets/RKB.jpeg" alt="Sibling Photo" class="polaroid-img"/>
+              <div class="tape-corner"></div>
+            </div>
+          </div>
+          <button class="next-award-btn heartbeat-btn" onclick="goToSlide('slide-gift-1-award')">Next: Sister Award 🏆</button>
+        </section>
+
+        <!-- Gift 1B: Best Sister Award Certificate -->
+        <section class="slide" id="slide-gift-1-award">
+          <button class="back-home-btn" onclick="goToSlide('slide-gift-1')">◀ Back</button>
+          <div class="certificate-container">
+            <div class="cert-ribbon">🎖️</div>
+            <h1 class="cert-title">Best Sister Award</h1>
+            <p class="cert-subtitle">This award is presented to:</p>
+            <h2 class="sister-name">Vanii</h2>
+            <p class="cert-body">
+              "For being the gorgeous, dramatic, shopping-obsessed study nerd who accidentally became my best friend, roasts me daily, and somehow remains the sweetest sister."
+            </p>
+          </div>
+          <button class="return-hub-btn heartbeat-btn" onclick="goToSlide('slide-gifts')">Return to Gifts 🎁</button>
+        </section>
+
+        <!-- Gift 2: Memories Scrapbook -->
+        <section class="slide" id="slide-gift-2">
+          <button class="back-home-btn" onclick="goToSlide('slide-gifts')">◀ Back</button>
+          <div class="memories-header">
+            <span class="m-letter delay-1">M</span><span class="m-letter delay-2">E</span><span class="m-letter delay-3">M</span><span class="m-letter delay-4">O</span><span class="m-letter delay-5">R</span><span class="m-letter delay-6">I</span><span class="m-letter delay-7">E</span><span class="m-letter delay-8">S</span> ✨
+          </div>
+          
+          <div class="scrapbook-grid">
+            <div class="scrap-photo draggable" style="--rot: -4deg; left: -20px; top: 10px;">
+              <!-- UPDATED: 1.jpg -->
+              <img src="assets/1.jpg" alt="Memory 1" />
+              <div class="clip">📌</div>
+            </div>
+            <div class="scrap-photo draggable" style="--rot: 3deg; z-index: 2;">
+              <!-- UPDATED: 2.jpg -->
+              <img src="assets/2.jpg" alt="Memory 2" />
+              <div class="clip">📌</div>
+            </div>
+            <div class="scrap-photo draggable" style="--rot: -2deg; left: 20px; top: 5px;">
+              <!-- UPDATED: 3.jpg -->
+              <img src="assets/3.png" alt="Memory 3" />
+              <div class="clip">📌</div>
+            </div>
+          </div>
+          
+          <p style="margin-top: 30px; font-family: 'Patrick Hand'; color: #eb4d4b; font-size: 1.2rem;">(Hint: Try dragging the photos around! 👆)</p>
+          <button class="return-hub-btn heartbeat-btn" onclick="goToSlide('slide-gifts')">Return to Gifts 🎁</button>
+        </section>
+
+        <!-- Gift 3A: Shinchan "You Are My" Diagram -->
+        <section class="slide" id="slide-gift-3">
+          <button class="back-home-btn" onclick="goToSlide('slide-gifts')">◀ Back</button>
+          <h2 class="you-are-title">YOU ARE MY...</h2>
+          
+          <div class="traits-cloud">
+            <svg class="connecting-lines">
+              <line x1="50%" y1="50%" x2="15%" y2="15%" />
+              <line x1="50%" y1="50%" x2="85%" y2="15%" />
+              <line x1="50%" y1="50%" x2="90%" y2="50%" />
+              <line x1="50%" y1="50%" x2="85%" y2="85%" />
+              <line x1="50%" y1="50%" x2="15%" y2="85%" />
+              <line x1="50%" y1="50%" x2="10%" y2="50%" />
+              <line x1="50%" y1="50%" x2="50%" y2="8%" />
+            </svg>
+            <span class="trait-bubble t1">👑 School's Prettiest Diva</span>
+            <span class="trait-bubble t2">🛍️ Fashion & Shopping Queen</span>
+            <span class="trait-bubble t3">📚 Secret Study Nerd</span>
+            <span class="trait-bubble t4">😭 Dramatic Crybaby</span>
+            <span class="trait-bubble t5">🎒 9th Grade Partner-in-Crime</span>
+            <span class="trait-bubble t6">🔥 Savage Roast Champion</span>
+            <span class="trait-bubble t7">❤️ Accidental Forever BSF</span>
+            
+            <div class="center-shinchan animate-float">
+              <img src="assets/wink.gif" alt="Shinchan" />
+            </div>
+          </div>
+          
+          <button class="next-award-btn heartbeat-btn" onclick="goToSlide('slide-gift-3-letter')">Read Letter 💌</button>
+        </section>
+
+        <!-- Gift 3B: Sweet Final Letter -->
+        <section class="slide" id="slide-gift-3-letter">
+          <button class="back-home-btn" onclick="goToSlide('slide-gift-3')">◀ Back</button>
+          <div class="letter-paper">
+            <h3>To the most stunning, dramatic & chaotic BSF ❤️</h3>
+            <p>
+              Becoming best friends with the most famous, gorgeous, and stunning girl in the entire school back in 9th grade was definitely not on my bingo card, but it turned out to be the best accident ever. You are the complete package: a brilliant study nerd, a fashion icon, a dramatic crybaby, and a savage roast master all in one.
+            </p>
+            <p>
+              I’ll probably never say this out loud again, so take notes: you truly are the prettiest, most charming, and effortlessly beautiful person inside and out. Thank you for all the laughter, the shared chaos, and always caring for me. Wishing you all the aesthetic outfits, top scores, and endless happiness. Happy Rakhi, Vanii!
+            </p>
+            <div class="letter-footer">
+              <img src="assets/love.gif" alt="Love" class="shinchan-mini animate-float"/>
+              <div class="sign-off">Your partner-in-crime & proud brother 💐</div>
+            </div>
+          </div>
+          <button class="return-hub-btn heartbeat-btn" onclick="goToSlide('slide-gifts')">Return to Gifts 🎁</button>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rakshabandhan Surprise 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fredoka:wght@500;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Image Magnifier Modal -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modalImg" alt="Enlarged Memory">
+    <div id="modalCaption"></div>
+  </div>
+
+  <div class="audio-control" id="musicToggle">🎵 Play Song</div>
+  <audio id="bgMusic" loop src="assets/song.mp3"></audio>
+
+  <div class="device-frame">
+    <div class="gingham-border">
+      <div class="screen-canvas" id="canvas">
+        
+        <canvas id="particleCanvas"></canvas>
+
+        <!-- Slide 0: Secret Passcode Gate (Active by Default) -->
+        <section class="slide active" id="slide-lock">
+          <div class="curved-banner">🔒 Secret Portal for Madam Ji Only</div>
+          <div class="shinchan-hero">
+            <img src="assets/wink.gif" alt="Shinchan Secret" class="shinchan-img animate-float" />
+          </div>
+          <p class="lock-hint">Enter the secret passcode to unlock this special Rakhi card:</p>
+          <div class="lock-form">
+            <input type="text" id="passcodeInput" placeholder="Enter secret code..." autocomplete="off" />
+            <button class="btn btn-red" onclick="verifyPasscode()">Unlock 🔑</button>
+          </div>
+          <p id="lockError" class="lock-error-text"></p>
+        </section>
+
+        <!-- Slide 1: Intro -->
+        <section class="slide" id="slide-intro">
+          <div class="curved-banner">I have made something for you</div>
+          <div class="shinchan-hero">
+            <img src="assets/intro.gif" alt="Shinchan" class="shinchan-img animate-float" />
+          </div>
+          <h2 class="subtext">Do you wanna see it?</h2>
+          <div class="btn-group">
+            <button class="btn btn-red" onclick="goToSlide('slide-excited')">YES</button>
+            <button class="btn btn-red" onclick="goToSlide('slide-dare')">NO</button>
+          </div>
+        </section>
+
+        <!-- Slide 2: Angry Shinchan -->
+        <section class="slide" id="slide-dare">
+          <h1 class="angry-title">HOW DARE YOU!?</h1>
+          <div class="shinchan-hero">
+            <img src="assets/angry.gif" alt="Angry Shinchan" class="shinchan-img" />
+          </div>
+          <button class="btn btn-try-again" onclick="goToSlide('slide-intro')">TRY AGAIN</button>
+        </section>
+
+        <!-- Slide 3: Are you excited? -->
+        <section class="slide" id="slide-excited">
+          <div class="curved-banner animate-bounce">Are you really excited?</div>
+          <div class="shinchan-hero">
+            <img src="assets/excited.gif" alt="Excited Shinchan" class="shinchan-img animate-float" />
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-red" onclick="goToSlide('slide-gifts')">YES</button>
+            <button class="btn btn-red" onclick="goToSlide('slide-gifts')">YES 🥰</button>
+          </div>
+        </section>
+
+        <!-- Slide 4: Gift Hub -->
+        <section class="slide" id="slide-gifts">
+          <div class="curved-banner">Each gift has something for you..</div>
+          <div class="gifts-container">
+            <div class="gift-box g1" onclick="goToSlide('slide-gift-1')">
+              <span class="gift-icon">🎁</span>
+              <p>Gift 1</p>
+            </div>
+            <div class="gift-box g2" onclick="goToSlide('slide-gift-2')">
+              <span class="gift-icon">🎁</span>
+              <p>Gift 2</p>
+            </div>
+            <div class="gift-box g3" onclick="goToSlide('slide-gift-3')">
+              <span class="gift-icon">🎁</span>
+              <p>Gift 3</p>
+            </div>
+          </div>
+          <p class="click-hint pulse-text">CLICK ON THE GIFTS</p>
+        </section>
+
+        <!-- Gift 1A: Rakhi Card -->
+        <section class="slide" id="slide-gift-1">
+          <button class="back-home-btn" onclick="goToSlide('slide-gifts')">◀ Back</button>
+          <div class="rakhi-layout">
+            <div class="rakhi-graphic">
+              <div class="rakhi-circle animate-spin-slow">💮</div>
+              <h2>Happy<br><span class="highlight-text">Rakshabandhan</span></h2>
+              <p class="message-snip">Here's to zero distance ruining our daily tea, surviving past drama, endless roasts, and my favorite 4-foot problem solver!</p>
+              <div class="badge-tag">Shrishty 💖</div>
+            </div>
+            <div class="photo-card-polaroid" onclick="openModal('assets/RKB.jpg', 'Rakhi Special Moment')">
+              <img src="assets/RKB.jpg" alt="Sibling Photo" class="polaroid-img"/>
+              <div class="tape-corner"></div>
+            </div>
+          </div>
+          <button class="next-award-btn heartbeat-btn" onclick="goToSlide('slide-gift-1-award')">Next: Sister Award 🏆</button>
+        </section>
+
+        <!-- Gift 1B: Best Sister Award Certificate -->
+        <section class="slide" id="slide-gift-1-award">
+          <button class="back-home-btn" onclick="goToSlide('slide-gift-1')">◀ Back</button>
+          <div class="certificate-container">
+            <div class="cert-ribbon">🎖️</div>
+            <h1 class="cert-title">Best Sister Award</h1>
+            <p class="cert-subtitle">This award is presented to:</p>
+            <h2 class="sister-name">Shrishty (Madam Ji)</h2>
+            <p class="cert-body">
+              "For being the bossiest 4-foot Devi in my life, putting distance to shame with non-stop gossip, solving every problem I throw at her, and standing right by my side when everything fell apart."
+            </p>
+          </div>
+          <button class="return-hub-btn heartbeat-btn" onclick="goToSlide('slide-gifts')">Return to Gifts 🎁</button>
+        </section>
+
+        <!-- Gift 2: Memories 17-Photo Doodle Gallery -->
+        <section class="slide" id="slide-gift-2">
+          <button class="back-home-btn" onclick="goToSlide('slide-gifts')">◀ Back</button>
+          <div class="memories-header">
+            <span class="m-letter delay-1">M</span><span class="m-letter delay-2">E</span><span class="m-letter delay-3">M</span><span class="m-letter delay-4">O</span><span class="m-letter delay-5">R</span><span class="m-letter delay-6">I</span><span class="m-letter delay-7">E</span><span class="m-letter delay-8">S</span> ✨
+          </div>
+          
+          <div class="gallery-scroll-container">
+            <div class="doodle-gallery-grid">
+              <div class="scrap-photo" style="--rot: -3deg;" onclick="openModal('assets/1.jpeg', 'Memory #1')">
+                <img src="assets/1.jpeg" alt="Memory 1" />
+                <div class="tape-corner-top"></div>
+              </div>
+              <div class="scrap-photo" style="--rot: 2deg;" onclick="openModal('assets/2.jpeg', 'Memory #2')">
+                <img src="assets/2.jpeg" alt="Memory 2" />
+                <div class="clip">📌</div>
+              </div>
+              <div class="scrap-photo" style="--rot: -2deg;" onclick="openModal('assets/3.jpeg', 'Memory #3')">
+                <img src="assets/3.jpeg" alt="Memory 3" />
+                <div class="doodle-star">⭐</div>
+              </div>
+              <div class="scrap-photo" style="--rot: 4deg;" onclick="openModal('assets/4.jpeg', 'Memory #4')">
+                <img src="assets/4.jpeg" alt="Memory 4" />
+                <div class="tape-corner-top"></div>
+              </div>
+              <div class="scrap-photo" style="--rot: -3deg;" onclick="openModal('assets/5.jpeg', 'Memory #5')">
+                <img src="assets/5.jpeg" alt="Memory 5" />
+                <div class="clip">📌</div>
+              </div>
+              <div class="scrap-photo" style="--rot: 1deg;" onclick="openModal('assets/6.jpeg', 'Memory #6')">
+                <img src="assets/6.jpeg" alt="Memory 6" />
+                <div class="doodle-heart">💖</div>
+              </div>
+              <div class="scrap-photo" style="--rot: -4deg;" onclick="openModal('assets/7.jpeg', 'Memory #7')">
+                <img src="assets/7.jpeg" alt="Memory 7" />
+                <div class="tape-corner-top"></div>
+              </div>
+              <div class="scrap-photo" style="--rot: 3deg;" onclick="openModal('assets/8.jpeg', 'Memory #8')">
+                <img src="assets/8.jpeg" alt="Memory 8" />
+                <div class="clip">📌</div>
+              </div>
+              <div class="scrap-photo" style="--rot: -2deg;" onclick="openModal('assets/9.jpeg', 'Memory #9')">
+                <img src="assets/9.jpeg" alt="Memory 9" />
+                <div class="doodle-star">✨</div>
+              </div>
+              <div class="scrap-photo" style="--rot: 2deg;" onclick="openModal('assets/10.jpeg', 'Memory #10')">
+                <img src="assets/10.jpeg" alt="Memory 10" />
+                <div class="tape-corner-top"></div>
+              </div>
+              <div class="scrap-photo" style="--rot: -3deg;" onclick="openModal('assets/11.jpeg', 'Memory #11')">
+                <img src="assets/11.jpeg" alt="Memory 11" />
+                <div class="clip">📌</div>
+              </div>
+              <div class="scrap-photo" style="--rot: 4deg;" onclick="openModal('assets/12.jpeg', 'Memory #12')">
+                <img src="assets/12.jpeg" alt="Memory 12" />
+                <div class="doodle-heart">🎀</div>
+              </div>
+              <div class="scrap-photo" style="--rot: -2deg;" onclick="openModal('assets/13.jpeg', 'Memory #13')">
+                <img src="assets/13.jpeg" alt="Memory 13" />
+                <div class="tape-corner-top"></div>
+              </div>
+              <div class="scrap-photo" style="--rot: 3deg;" onclick="openModal('assets/14.jpeg', 'Memory #14')">
+                <img src="assets/14.jpeg" alt="Memory 14" />
+                <div class="clip">📌</div>
+              </div>
+              <div class="scrap-photo" style="--rot: -4deg;" onclick="openModal('assets/15.jpeg', 'Memory #15')">
+                <img src="assets/15.jpeg" alt="Memory 15" />
+                <div class="doodle-star">🌸</div>
+              </div>
+              <div class="scrap-photo" style="--rot: 2deg;" onclick="openModal('assets/16.jpeg', 'Memory #16')">
+                <img src="assets/16.jpeg" alt="Memory 16" />
+                <div class="tape-corner-top"></div>
+              </div>
+              <div class="scrap-photo" style="--rot: -3deg;" onclick="openModal('assets/17.jpeg', 'Memory #17')">
+                <img src="assets/17.jpeg" alt="Memory 17" />
+                <div class="clip">📌</div>
+              </div>
+            </div>
+          </div>
+          
+          <p class="gallery-hint">🔍 Click any picture to enlarge it!</p>
+          <button class="return-hub-btn heartbeat-btn" onclick="goToSlide('slide-gifts')">Return to Gifts 🎁</button>
+        </section>
+
+        <!-- Gift 3A: Shinchan "You Are My" Diagram -->
+        <section class="slide" id="slide-gift-3">
+          <button class="back-home-btn" onclick="goToSlide('slide-gifts')">◀ Back</button>
+          <h2 class="you-are-title">YOU ARE MY...</h2>
+          
+          <div class="traits-cloud">
+            <svg class="connecting-lines">
+              <line x1="50%" y1="50%" x2="15%" y2="15%" />
+              <line x1="50%" y1="50%" x2="85%" y2="15%" />
+              <line x1="50%" y1="50%" x2="90%" y2="50%" />
+              <line x1="50%" y1="50%" x2="85%" y2="85%" />
+              <line x1="50%" y1="50%" x2="15%" y2="85%" />
+              <line x1="50%" y1="50%" x2="10%" y2="50%" />
+              <line x1="50%" y1="50%" x2="50%" y2="8%" />
+            </svg>
+            <span class="trait-bubble t1">👠 4-Foot Bossy "Madam Ji"</span>
+            <span class="trait-bubble t2">🕊️ Devi & Pure Soul</span>
+            <span class="trait-bubble t3">🛠️ Official Problem Solver</span>
+            <span class="trait-bubble t4">☕ Long-Distance Gossip Partner</span>
+            <span class="trait-bubble t5">👂 Best Patient Listener</span>
+            <span class="trait-bubble t6">🔥 Savage Roast Specialist</span>
+            <span class="trait-bubble t7">❤️ 9th Grade Lifeline & BSF</span>
+            
+            <div class="center-shinchan animate-float">
+              <img src="assets/wink.gif" alt="Shinchan" />
+            </div>
+          </div>
+          
+          <button class="next-award-btn heartbeat-btn" onclick="goToSlide('slide-gift-3-letter')">Read Letter 💌</button>
+        </section>
+
+        <!-- Gift 3B: Final Letter + Sister Stats Card -->
+        <section class="slide" id="slide-gift-3-letter">
+          <button class="back-home-btn" onclick="goToSlide('slide-gift-3')">◀ Back</button>
+          
+          <div class="letter-stats-wrapper">
+            <!-- Letter Portion -->
+            <div class="letter-paper">
+              <h3>To my 4-foot bossy Devi & forever BSF Shrishty ❤️</h3>
+              <p>
+                Ever since meeting you in 9th grade, you’ve held down the spot of my closest confidante. You switching schools in 11th grade didn't change a single thing... our non-stop gossiping, chit-chatting, and mutual roasting easily defeated the distance. We've weathered our share of fights and messy times, but whenever life hit hard and I genuinely needed someone to lean on, you showed up without hesitation.
+              </p>
+              <p>
+                You truly are one of a kind: part bossy Madam Ji who orders everyone around despite being tiny, part literal Devi who listens and fixes every issue with care. Thank you for never giving up on our bond and for being the most reliable sister ever. Wishing you top-tier happiness, endless success, and peace. Happy Rakhi, Shrishty!
+              </p>
+              <div class="letter-footer">
+                <img src="assets/love.gif" alt="Love" class="shinchan-mini animate-float"/>
+                <div class="sign-off">Your grateful bestie & brother forever 💐</div>
+              </div>
+            </div>
+
+            <!-- Sister Stats Card -->
+            <div class="stats-card">
+              <div class="stats-header">📊 Sister Stats: Madam Ji Edition</div>
+              <div class="stat-item">
+                <div class="stat-label"><span>Distance Resistance</span><span>100%</span></div>
+                <div class="stat-bar"><div class="stat-fill" style="--fill-w: 100%;"></div></div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label"><span>Patience with My Rants</span><span>&infin;</span></div>
+                <div class="stat-bar"><div class="stat-fill" style="--fill-w: 100%;"></div></div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label"><span>Height</span><span>4'11" (acts 6'2")</span></div>
+                <div class="stat-bar"><div class="stat-fill" style="--fill-w: 92%;"></div></div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label"><span>Problem-Solving Success Rate</span><span>99.9%</span></div>
+                <div class="stat-bar"><div class="stat-fill" style="--fill-w: 99.9%;"></div></div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label"><span>Daily Roast Threat</span><span>MAX</span></div>
+                <div class="stat-bar"><div class="stat-fill stat-fill-orange" style="--fill-w: 95%;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <button class="return-hub-btn heartbeat-btn" onclick="goToSlide('slide-gifts')">Return to Gifts 🎁</button>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
